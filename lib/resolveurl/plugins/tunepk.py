@@ -38,9 +38,14 @@ class TunePkResolver(ResolveUrl):
         if 'video has been deactivated' in html:
             raise ResolverError('File Removed')
 
-        headers['Referer'] = web_url
-        cust_hdrs = json.loads(re.findall("headers':\s*([^\n]+),", html)[0])
-        headers.update(cust_hdrs)
+        headers.update({'Referer': web_url})
+        hdrs = re.search("headers':\s*([^\n]+),", html)
+        if hdrs:
+            try:
+                hdrs = json.loads(hdrs.group(1))
+                headers.update(hdrs)
+            except:
+                pass
         web_url = re.findall("requestURL = '(.*?)'", html)[0]
         response = self.net.http_GET(web_url, headers=headers)
         jdata = json.loads(response.content)
