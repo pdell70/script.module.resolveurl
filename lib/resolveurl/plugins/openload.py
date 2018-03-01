@@ -18,7 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
 import os
 import json
-import ol_gmu
 from lib import helpers
 from resolveurl import common
 from resolveurl.common import i18n
