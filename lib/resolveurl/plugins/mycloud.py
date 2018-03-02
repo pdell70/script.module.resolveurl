@@ -44,5 +44,5 @@ class MycloudResolver(ResolveUrl):
         raise ResolverError("Unable to locate video")
 
     def get_url(self, host, media_id):
-        return self._default_get_url(host, media_id, template='http://{host}/embed/{media_id}?ui=%s' % ''.join(
+        return self._default_get_url(host, media_id, template='https://mcloud.to/embed/{media_id}?ui=%s' % ''.join(
             choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for _ in range(24)))
